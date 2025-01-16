@@ -4,7 +4,7 @@ import SidebarNoteItem from '@/components/SidebarNoteItem'
 
 const SidebarNoteList = async () => {
   const sleep = ms => new Promise(r => setTimeout(r, ms))
-  await sleep(10000)
+  await sleep(2000)
   const notes = await getAllNotes()
 
   const data = Object.entries(

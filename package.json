@@ -11,9 +11,11 @@
   "dependencies": {
     "dayjs": "^1.11.13",
     "ioredis": "^5.4.2",
+    "marked": "^15.0.6",
     "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sanitize-html": "^2.14.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
