@@ -9,7 +9,7 @@ const NoteDetails = async ({ params }) => {
 
   // 为了让 Suspense 的效果更明显
   const sleep = ms => new Promise(r => setTimeout(r, ms))
-  await sleep(3000)
+  await sleep(300)
 
   if (note == null) {
     return (
