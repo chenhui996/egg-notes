@@ -1,28 +1,19 @@
-import React, { Suspense } from 'react'
-import Link from 'next/link'
-// import { getAllNodes } from '@/lib/redis'
+import React, { Suspense } from 'react' 
+
+// components
 import SidebarNoteList from '@/components/SidebarNoteList'
 import EditButton from '@/components/EditButton'
 import NoteListSkeleton from '@/components/NoteListSkeleton'
+import Header from '@/components/Header'
+import SidebarSearchField from '@/components/SidebarSearchField'
 
 const Sidebar = async () => {
   return (
     <>
       <section className='col sidebar'>
-        <Link href={'/'} className='linlk--unstyled'>
-          <section className='sidebar-header'>
-            <img
-              className='logo'
-              src='/logo.svg'
-              width={22}
-              height={20}
-              alt=''
-              role='presentation'
-            />
-            <strong>React Notes</strong>
-          </section>
-        </Link>
+        <Header />
         <section className='sidebar-menu' role='menubar'>
+          <SidebarSearchField />
           <EditButton noteId={null}>New</EditButton>
         </section>
         <nav>

@@ -1,10 +1,12 @@
 import React from 'react'
 import { getAllNotes } from '@/lib/redis'
-import SidebarNoteItem from '@/components/SidebarNoteItem'
+import { sleep } from '@/lib/utils'
+import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader'
+import SidebarNoteListFilter from '@/components/SidebarNoteListFilter'
+import SidebarNoteItem from './SidebarNoteItem'
 
 const SidebarNoteList = async () => {
-  const sleep = ms => new Promise(r => setTimeout(r, ms))
-  await sleep(2000)
+  // await sleep(300)
   const notes = await getAllNotes()
 
   const data = Object.entries(
@@ -15,15 +17,33 @@ const SidebarNoteList = async () => {
     return <div className='notes-empty'>{'No notes created yet!'}</div>
   }
 
-  return (
-    <ul className='notes-list'>
-      {data.map(([noteId, note]) => (
-        <li key={noteId}>
-          <SidebarNoteItem noteId={noteId} note={JSON.parse(note)} />
-        </li>
-      ))}
-    </ul>
-  )
+  const result = data.map(([noteId, note]) => {
+    const noteData = JSON.parse(note)
+    return {
+      noteId,
+      note: noteData,
+      header: (
+        <SidebarNoteItemHeader
+          title={noteData.title}
+          updateTime={noteData.updateTime}
+        />
+      )
+    }
+  })
+
+  return <SidebarNoteListFilter notes={result} />
+  // return (
+  //   <ul className='notes-list'>
+  //     {data.map(([noteId, note]) => {
+  //       const noteData = JSON.parse(note)
+  //       return (
+  //         <li key={noteId}>
+  //           <SidebarNoteItem key={noteId} noteId={noteId} note={noteData} />
+  //         </li>
+  //       )
+  //     })}
+  //   </ul>
+  // )
 }
 
 export default SidebarNoteList
