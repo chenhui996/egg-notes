@@ -1,13 +1,14 @@
 import React from 'react'
 import NoteEditor from '@/components/NoteEditor'
 import { getNote } from '@/lib/redis'
+import {sleep} from '@/lib/utils'
+
 
 const EditDetails = async ({ params }) => {
   const { id } = await params
   const note = await getNote(id)
 
   // 让效果更明显
-  const sleep = ms => new Promise(r => setTimeout(r, ms))
   await sleep(300)
 
   if (note === null) {

@@ -34,9 +34,10 @@ npm install
 - 启动项目
 
 ```bash
-// 开发环境
+# 开发环境
 npm run dev
 
-// 生产环境
-npm start
+# 生产环境
+npm run build
+npm run start
 ```

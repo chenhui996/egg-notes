@@ -1,6 +1,8 @@
 import React from 'react'
 import { getNote } from '@/lib/redis'
 import Note from '@/components/Note'
+import {sleep} from '@/lib/utils'
+
 
 const NoteDetails = async ({ params }) => {
   // 动态路由 获取笔记 id
@@ -8,7 +10,6 @@ const NoteDetails = async ({ params }) => {
   const note = await getNote(id)
 
   // 为了让 Suspense 的效果更明显
-  const sleep = ms => new Promise(r => setTimeout(r, ms))
   await sleep(300)
 
   if (note == null) {
