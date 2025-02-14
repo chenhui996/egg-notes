@@ -7,6 +7,7 @@ import { locales, defaultLocale } from '@/config.js'
 const publicFile = /\.(.*)$/
 const excludeFile = ['logo.svg']
 
+// 获取客户端语言
 const getLocale = request => {
   const headers = {
     'accept-language': request.headers.get('accept-language') || ''
@@ -17,6 +18,8 @@ const getLocale = request => {
   return match(languages, locales, defaultLocale)
 }
 
+// 使用 NextResponse.rewrite 来重写请求路径而不改变客户端 URL
+// 使用 NextResponse.redirect 来执行客户端重定向。
 export function middleware (request) {
   const { pathname } = request.nextUrl
 
@@ -44,10 +47,11 @@ export function middleware (request) {
     return NextResponse.rewrite(request.nextUrl)
   }
 
-  // 重定向，如 /products 重定向到 /en-US/products
-  return Response.redirect(request.nextUrl)
+  // 重定向，如 /products 重定向到 /en/products
+  return NextResponse.redirect(request.nextUrl)
 }
 
+// 为了让中间件生效，需要在 next.config.js 中配置
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
 }

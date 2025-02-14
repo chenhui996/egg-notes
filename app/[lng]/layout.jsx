@@ -1,5 +1,10 @@
 import './style.css'
 import Sidebar from '@/components/Sidebar'
+import { locales } from '@/config.js'
+
+export async function generateStaticParams() {
+  return locales.map((lng) => ({ lng }))
+}
 
 export default async function RootLayout ({ children, params }) {
   const { lng } = await params
