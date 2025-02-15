@@ -12,7 +12,7 @@ const Spinner = ({ active = true }) => {
   )
 }
 
-const SidebarSearchField = () => {
+const SidebarSearchField = ({ lng, seatchT }) => {
   const { replace } = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
@@ -41,7 +41,7 @@ const SidebarSearchField = () => {
       </label>
       <input
         id='sidebar-search-input'
-        placeholder='Search'
+        placeholder={seatchT.toString() || 'Search'}
         type='text'
         onChange={onSearch}
       />

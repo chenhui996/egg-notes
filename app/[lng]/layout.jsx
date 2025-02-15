@@ -1,9 +1,10 @@
 import './style.css'
 import Sidebar from '@/components/Sidebar'
+import { Foorter } from '@/components/Footer'
 import { locales } from '@/config.js'
 
-export async function generateStaticParams() {
-  return locales.map((lng) => ({ lng }))
+export async function generateStaticParams () {
+  return locales.map(lng => ({ lng }))
 }
 
 export default async function RootLayout ({ children, params }) {
@@ -14,9 +15,10 @@ export default async function RootLayout ({ children, params }) {
       <body>
         <div className='container'>
           <div className='main'>
-            <Sidebar />
+            <Sidebar lng={lng} />
             <section className='col note-viewer'>{children}</section>
           </div>
+          <Foorter lng={lng} />
         </div>
       </body>
     </html>
