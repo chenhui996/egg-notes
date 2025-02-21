@@ -10,14 +10,13 @@ import { useTranslation } from '@/app/i18n'
 
 const Sidebar = async ({ lng }) => {
   const { t } = await useTranslation(lng)
-  const seatchT = t('search')
 
   return (
     <>
       <section className='col sidebar'>
         <Header />
         <section className='sidebar-menu' role='menubar'>
-          <SidebarSearchField lng={lng} seatchT={seatchT} />
+          <SidebarSearchField lng={lng} />
           <EditButton noteId={null}>{t('new')}</EditButton>
         </section>
         <nav>
