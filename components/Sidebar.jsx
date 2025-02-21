@@ -7,7 +7,8 @@ import NoteListSkeleton from '@/components/NoteListSkeleton'
 import Header from '@/components/Header'
 import SidebarSearchField from '@/components/SidebarSearchField'
 import { useTranslation } from '@/app/i18n'
-import SidebarImport from '@/components/SidebarImport'
+// import SidebarImport from '@/components/SidebarImportAPI'
+import SidebarImport from '@/components/SidebarImportSA'
 
 const Sidebar = async ({ lng }) => {
   const { t } = await useTranslation(lng)

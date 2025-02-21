@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense, useTransition } from 'react'
+import React, { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 
 const SidebarImport = () => {
