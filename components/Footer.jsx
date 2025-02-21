@@ -8,7 +8,15 @@ export const Foorter = async ({ lng }) => {
   const { t } = await useTranslation(lng, 'footer')
 
   return (
-    <footer style={{ margin: 20 }}>
+    <footer
+      style={{
+        margin: 0,
+        position: 'absolute',
+        bottom: 52,
+        left: 16,
+        zIndex: 10000
+      }}
+    >
       <Trans i18nKey='languageSwitcher' t={t}>
         {' '}
         <strong>{{ lng }}</strong>
