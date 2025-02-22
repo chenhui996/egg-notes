@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { importNote } from '@/actions'
+import { importNote } from '@/app/actions'
 
 const SidebarImport = () => {
   const router = useRouter()

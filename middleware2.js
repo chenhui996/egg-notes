@@ -3,6 +3,7 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { NextResponse } from 'next/server'
 import { locales, defaultLocale } from '@/config.js'
+// import { auth } from 'auth'
 
 const publicFile = /\.(.*)$/
 const excludeFile = ['logo.svg']
@@ -20,8 +21,15 @@ const getLocale = request => {
 
 // 使用 NextResponse.rewrite 来重写请求路径而不改变客户端 URL
 // 使用 NextResponse.redirect 来执行客户端重定向。
-export function middleware (request) {
+export async function middleware (request) {
   const { pathname } = request.nextUrl
+  // const session = await auth()
+
+  // if (pathname.startsWith('/note/edit')) {
+  //   if (!session) {
+  //     return NextResponse.redirect(request.nextUrl.origin)
+  //   }
+  // }
 
   // 判断请求路径中是否已存在语言，已存在语言则跳过
   const pathnameHasLocale = locales.some(

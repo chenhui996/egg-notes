@@ -1,7 +1,6 @@
 'use client'
 import React, { useTransition } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { useTranslation } from '@/app/i18n/client.js'
 
 const Spinner = ({ active = true }) => {
   return (
@@ -17,8 +16,6 @@ const SidebarSearchField = ({ lng }) => {
   const { replace } = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
-
-  const { t } = useTranslation(lng, 'basic')
 
   const onSearch = event => {
     const value = event.target.value
@@ -44,7 +41,7 @@ const SidebarSearchField = ({ lng }) => {
       </label>
       <input
         id='sidebar-search-input'
-        placeholder={t('search')}
+        placeholder='Search'
         type='text'
         onChange={onSearch}
       />

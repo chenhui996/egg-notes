@@ -1,25 +1,31 @@
 import React, { Suspense } from 'react'
+import Link from 'next/link'
+import SidebarSearchField from '@/components/SidebarSearchField';
+import SidebarNoteList from '@/components/SidebarNoteList';
+import EditButton from '@/components/EditButton';
+import NoteListSkeleton from '@/components/NoteListSkeleton';
+import SidebarImport from '@/components/SidebarImport';
 
-// components
-import SidebarNoteList from '@/components/SidebarNoteList'
-import EditButton from '@/components/EditButton'
-import NoteListSkeleton from '@/components/NoteListSkeleton'
-import Header from '@/components/Header'
-import SidebarSearchField from '@/components/SidebarSearchField'
-import { useTranslation } from '@/app/i18n'
-// import SidebarImport from '@/components/SidebarImportAPI'
-import SidebarImport from '@/components/SidebarImportSA'
-
-const Sidebar = async ({ lng }) => {
-  const { t } = await useTranslation(lng)
-
+export default async function Sidebar() {
   return (
     <>
-      <section className='col sidebar'>
-        <Header />
-        <section className='sidebar-menu' role='menubar'>
-          <SidebarSearchField lng={lng} />
-          <EditButton noteId={null}>{t('new')}</EditButton>
+      <section className="col sidebar">
+        <Link href={'/'} className="link--unstyled">
+          <section className="sidebar-header">
+            <img
+              className="logo"
+              src="/logo.svg"
+              width="22px"
+              height="20px"
+              alt=""
+              role="presentation"
+            />
+            <strong>React Notes</strong>
+          </section>
+        </Link>
+        <section className="sidebar-menu" role="menubar">
+          <SidebarSearchField />
+          <EditButton noteId={null}>New</EditButton>
         </section>
         <nav>
           <Suspense fallback={<NoteListSkeleton />}>
@@ -31,5 +37,3 @@ const Sidebar = async ({ lng }) => {
     </>
   )
 }
-
-export default Sidebar

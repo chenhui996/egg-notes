@@ -4,8 +4,9 @@
     "paths": {
       "@/components/*": ["./components/*"],
       "@/lib/*": ["./lib/*"],
-      "@/actions": ["./app/[lng]/actions.js"],
-      "@/*": ["./*"]
+      "@/actions": ["app/actions.js"],
+      "@/*": ["./*"],
+      "auth": ["./auth"]
     }
   }
 }
