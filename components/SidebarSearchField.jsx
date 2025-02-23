@@ -12,7 +12,7 @@ const Spinner = ({ active = true }) => {
   )
 }
 
-const SidebarSearchField = () => {
+const SidebarSearchField = ({ lng }) => {
   const { replace } = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()

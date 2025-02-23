@@ -1,8 +1,8 @@
 import React from 'react'
-import { getNote } from '@/lib/redis'
+// import { getNote } from '@/lib/redis'
+import { getNote } from '@/lib/strapi'
 import Note from '@/components/Note'
-import {sleep} from '@/lib/utils'
-
+import { sleep } from '@/lib/utils'
 
 const NoteDetails = async ({ params }) => {
   // 动态路由 获取笔记 id

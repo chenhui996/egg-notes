@@ -1,9 +1,10 @@
 import React from 'react'
-import { getAllNotes } from '@/lib/redis'
-import { sleep } from '@/lib/utils'
+// import { getAllNotes } from '@/lib/redis'
+import { getAllNotes } from '@/lib/strapi'
+// import { sleep } from '@/lib/utils'
 import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader'
 import SidebarNoteListFilter from '@/components/SidebarNoteListFilter'
-import SidebarNoteItem from './SidebarNoteItem'
+// import SidebarNoteItem from './SidebarNoteItem'
 
 const SidebarNoteList = async () => {
   // await sleep(300)
