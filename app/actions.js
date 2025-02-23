@@ -1,7 +1,8 @@
 'use server'
 import { z } from 'zod'
 import { redirect } from 'next/navigation'
-import { addNote, updateNote, delNote } from '@/lib/redis'
+// import { addNote, updateNote, delNote } from '@/lib/redis'
+import { addNote, updateNote, delNote } from '@/lib/strapi'
 import { revalidatePath } from 'next/cache'
 import { stat, mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
@@ -35,13 +36,13 @@ const saveNote = async (prevState, formData) => {
   await sleep(1000)
 
   if (noteId) {
-    updateNote(noteId, JSON.stringify(data))
+    const slug = await updateNote(noteId, JSON.stringify(data))
     revalidatePath(`/`, 'layout')
-    // redirect(`/note/${noteId}`)
+    redirect(`/note/${slug}`)
   } else {
-    const newNoteId = await addNote(JSON.stringify(data))
+    const slug = await addNote(JSON.stringify(data))
     revalidatePath(`/`, 'layout')
-    // redirect(`/note/${newNoteId}`)
+    redirect(`/note/${slug}`)
   }
 
   return { message: `Add Success!` }
@@ -52,8 +53,7 @@ const deleteNote = async (prevState, formData) => {
 
   // 为了让效果更明显
   await sleep(1000)
-
-  delNote(noteId)
+  await delNote(noteId)
   revalidatePath(`/`, 'layout')
   redirect('/')
 }
