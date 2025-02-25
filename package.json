@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.10",
+    "@prisma/client": "^6.4.1",
     "dayjs": "^1.11.13",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.4",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.4"
+    "eslint-config-next": "15.1.4",
+    "prisma": "^6.4.1"
   }
 }

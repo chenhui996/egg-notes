@@ -2,13 +2,15 @@
 import { z } from 'zod'
 import { redirect } from 'next/navigation'
 // import { addNote, updateNote, delNote } from '@/lib/redis'
-import { addNote, updateNote, delNote } from '@/lib/strapi'
+// import { addNote, updateNote, delNote } from '@/lib/strapi'
+import { addNote, updateNote, delNote } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { stat, mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
 import dayjs from 'dayjs'
 
 import { sleep } from '@/lib/utils'
+import { log } from 'console'
 
 const schema = z.object({
   title: z.string(),
@@ -19,6 +21,8 @@ const schema = z.object({
 })
 
 const saveNote = async (prevState, formData) => {
+  console.log('saveNote', formData);
+  
   const noteId = formData.get('noteId')
   const data = {
     title: formData.get('title'),

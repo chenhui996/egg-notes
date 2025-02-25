@@ -1,6 +1,7 @@
 import React from 'react'
 // import { getAllNotes } from '@/lib/redis'
-import { getAllNotes } from '@/lib/strapi'
+// import { getAllNotes } from '@/lib/strapi'
+import { getAllNotes } from '@/lib/prisma'
 // import { sleep } from '@/lib/utils'
 import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader'
 import SidebarNoteListFilter from '@/components/SidebarNoteListFilter'
