@@ -1,7 +1,8 @@
 import NextAuth from 'next-auth' // 功能：登录
 import Github from 'next-auth/providers/github' // 功能：Github 登录
 import CredentialsProvider from 'next-auth/providers/credentials' // 功能：用户名密码登录
-import { addUser, getUser } from '@/lib/redis' // 功能：添加用户、获取用户
+// import { addUser, getUser } from '@/lib/redis' // 功能：添加用户、获取用户
+import { addUser, getUser } from '@/lib/prisma' // 功能：添加用户、获取用户
 
 export const {
   handlers, // 功能：获取用户信息
@@ -11,14 +12,16 @@ export const {
 } = NextAuth({
   providers: [
     CredentialsProvider({
+      // 显示按钮文案 (e.g. "Sign in with...")
       name: '密码登录',
+      // `credentials` 用于渲染登录页面表单
       credentials: {
-        username: { label: '邮箱', type: 'text', placeholder: '请输入邮箱' },
+        username: { label: '账号', type: 'text', placeholder: '输入您的账号' },
         password: { label: '密码', type: 'password', placeholder: '请输入密码' }
       },
+      // 处理从用户收到的认证信息
       async authorize (credentials) {
-        // console.log('credentials', credentials);
-        
+        // 默认情况下不对用户输入进行验证，确保使用 Zod 这样的库进行验证
         let user = null
 
         // 登录信息验证
@@ -50,6 +53,16 @@ export const {
       const { pathname } = request.nextUrl
       if (pathname.startsWith('/note/edit')) return !!auth
       return true
+    },
+    async jwt ({ token, user, account }) {
+      if (account && account.type === 'credentials' && user) {
+        token.userId = user.userId
+      }
+      return token
+    },
+    async session ({ session, token }) {
+      session.user.userId = token.userId
+      return session
     }
   }
 })

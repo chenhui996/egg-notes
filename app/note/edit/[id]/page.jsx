@@ -1,7 +1,8 @@
 import React from 'react'
 import NoteEditor from '@/components/NoteEditor'
 // import { getNote } from '@/lib/redis'
-import { getNote } from '@/lib/strapi'
+// import { getNote } from '@/lib/strapi'
+import { getNote } from '@/lib/prisma'
 import {sleep} from '@/lib/utils'
 
 
